@@ -94,6 +94,7 @@ yarn add nodejieba
 | searchResultContextMaxLength     | number                                   | `50`         | Set the max length of characters of each search result to show.                                                                              |
 | translations                     | TranslationMap                           | -            | Set translations of this plugin, see [docs below](#translations).                                                                            |
 | ignoreFiles                      | string \| RegExp \| (string \| RegExp)[] | /**meta**\$/ | Set the match rules to ignore some files.                                                                                                    |
+| searchBarShortcut                | boolean                                  | `true`       | Whether to enable shortcut for focusing in search bar.                                                                                       |
 
 ### Translations
 

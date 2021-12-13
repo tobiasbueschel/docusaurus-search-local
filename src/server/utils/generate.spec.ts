@@ -26,6 +26,7 @@ describe("generate", () => {
         "export const searchResultLimits = 8;",
         "export const searchResultContextMaxLength = 50;",
         'export const translations = {"hello":"hola"};',
+        "export const searchBarShortcut = true;",
       ],
     ],
     [
@@ -43,6 +44,7 @@ describe("generate", () => {
         "export const searchResultLimits = 8;",
         "export const searchResultContextMaxLength = 50;",
         'export const translations = {"hello":"hola"};',
+        "export const searchBarShortcut = true;",
       ],
     ],
     [
@@ -62,6 +64,7 @@ describe("generate", () => {
         "export const searchResultLimits = 8;",
         "export const searchResultContextMaxLength = 50;",
         'export const translations = {"hello":"hola"};',
+        "export const searchBarShortcut = true;",
       ],
     ],
     [
@@ -84,6 +87,7 @@ describe("generate", () => {
         "export const searchResultLimits = 8;",
         "export const searchResultContextMaxLength = 50;",
         'export const translations = {"hello":"hola"};',
+        "export const searchBarShortcut = true;",
       ],
     ],
     [
@@ -104,6 +108,7 @@ describe("generate", () => {
         "export const searchResultLimits = 8;",
         "export const searchResultContextMaxLength = 50;",
         'export const translations = {"hello":"hola"};',
+        "export const searchBarShortcut = true;",
       ],
     ],
     [
@@ -127,6 +132,7 @@ describe("generate", () => {
         "export const searchResultLimits = 8;",
         "export const searchResultContextMaxLength = 50;",
         'export const translations = {"hello":"hola"};',
+        "export const searchBarShortcut = true;",
       ],
     ],
   ])("generate({ language: %j }, dir) should work", (language, contents) => {
@@ -137,8 +143,9 @@ describe("generate", () => {
         searchResultLimits: 8,
         searchResultContextMaxLength: 50,
         translations: {
-          "hello": "hola"
+          hello: "hola",
         },
+        searchBarShortcut: true,
       } as ProcessedPluginOptions,
       "/tmp"
     );
@@ -161,8 +168,8 @@ describe("generate", () => {
         searchResultLimits: 8,
         searchResultContextMaxLength: 50,
         translations: {
-          "hello": "hola"
-        }
+          hello: "hola",
+        },
       } as ProcessedPluginOptions,
       "/tmp"
     );
@@ -170,6 +177,27 @@ describe("generate", () => {
     expect(mockWriteFileSync).toBeCalledWith(
       "/tmp/generated.js",
       expect.stringContaining("export { default as Mark } from")
+    );
+  });
+
+  test("searchBarShortcut", () => {
+    generate(
+      {
+        language: ["en"],
+        removeDefaultStopWordFilter: false,
+        searchBarShortcut: false,
+        searchResultLimits: 8,
+        searchResultContextMaxLength: 50,
+        translations: {
+          hello: "hola",
+        },
+      } as ProcessedPluginOptions,
+      "/tmp"
+    );
+
+    expect(mockWriteFileSync).toBeCalledWith(
+      "/tmp/generated.js",
+      expect.stringContaining("export const searchBarShortcut = false")
     );
   });
 });

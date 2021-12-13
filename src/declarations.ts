@@ -23,6 +23,7 @@ declare module "*/generated.js" {
   export const searchResultLimits: number;
   export const searchResultContextMaxLength: number;
   export const translations: Required<TranslationMap>;
+  export const searchBarShortcut: boolean;
   // These below are for mocking only.
   export const __setLanguage: (value: string[]) => void;
   export const __setRemoveDefaultStopWordFilter: (value: boolean) => void;

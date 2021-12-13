@@ -11,6 +11,7 @@ export function generate(config: ProcessedPluginOptions, dir: string): void {
     searchResultLimits,
     searchResultContextMaxLength,
     translations,
+    searchBarShortcut,
   } = config;
   const indexHash = getIndexHash(config);
   const contents: string[] = [
@@ -73,8 +74,9 @@ export function generate(config: ProcessedPluginOptions, dir: string): void {
       searchResultContextMaxLength
     )};`
   );
+  contents.push(`export const translations = ${JSON.stringify(translations)};`);
   contents.push(
-    `export const translations = ${JSON.stringify(translations)};`
+    `export const searchBarShortcut = ${JSON.stringify(searchBarShortcut)};`
   );
 
   fs.writeFileSync(path.join(dir, "generated.js"), contents.join("\n"));

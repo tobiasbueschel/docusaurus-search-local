@@ -46,6 +46,7 @@ describe("validateOptions", () => {
         searchResultContextMaxLength: 50,
         ignoreFiles: [],
         translations: defaultTranslations,
+        searchBarShortcut: true,
       },
     ],
     [
@@ -66,6 +67,7 @@ describe("validateOptions", () => {
         searchResultContextMaxLength: 50,
         ignoreFiles: "file1",
         translations: defaultTranslations,
+        searchBarShortcut: true,
       },
     ],
     [
@@ -86,6 +88,7 @@ describe("validateOptions", () => {
         searchResultContextMaxLength: 50,
         ignoreFiles: [/__meta__$/, "file1"],
         translations: defaultTranslations,
+        searchBarShortcut: true,
       },
     ],
     [
@@ -106,6 +109,7 @@ describe("validateOptions", () => {
         searchResultContextMaxLength: 50,
         ignoreFiles: [],
         translations: defaultTranslations,
+        searchBarShortcut: true,
       },
     ],
     [
@@ -116,6 +120,7 @@ describe("validateOptions", () => {
         highlightSearchTermsOnTargetPage: true,
         searchResultLimits: 5,
         searchResultContextMaxLength: 30,
+        searchBarShortcut: false,
       },
       {
         blogRouteBasePath: ["blog"],
@@ -133,6 +138,7 @@ describe("validateOptions", () => {
         searchResultContextMaxLength: 30,
         ignoreFiles: [],
         translations: defaultTranslations,
+        searchBarShortcut: false,
       },
     ],
     [
@@ -156,6 +162,7 @@ describe("validateOptions", () => {
         searchResultContextMaxLength: 50,
         ignoreFiles: [],
         translations: defaultTranslations,
+        searchBarShortcut: true,
       },
     ],
     [
@@ -179,6 +186,7 @@ describe("validateOptions", () => {
         searchResultContextMaxLength: 50,
         ignoreFiles: [],
         translations: defaultTranslations,
+        searchBarShortcut: true,
       },
     ],
     [
@@ -219,6 +227,7 @@ describe("validateOptions", () => {
           count_documents_found_plural: "共找到 {{ count }} 篇文档",
           no_documents_were_found: "没有找到任何文档",
         },
+        searchBarShortcut: true,
       },
     ],
     [
@@ -260,6 +269,7 @@ describe("validateOptions", () => {
           count_documents_found_plural: "共找到 {{ count }} 篇文档",
           no_documents_were_found: "没有找到任何文档",
         },
+        searchBarShortcut: true,
       },
     ],
   ])("validateOptions(...) should work", (options, config) => {

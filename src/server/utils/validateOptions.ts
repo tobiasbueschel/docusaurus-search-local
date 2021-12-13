@@ -48,6 +48,7 @@ const schema = Joi.object<PluginOptions>({
   })
     .default()
     .unknown(false),
+  searchBarShortcut: Joi.boolean().default(true),
 });
 
 export function validateOptions({

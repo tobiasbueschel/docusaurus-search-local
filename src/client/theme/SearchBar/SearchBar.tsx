@@ -19,6 +19,7 @@ import {
   searchResultLimits,
   Mark,
   translations,
+  searchBarShortcut,
 } from "../../utils/proxiedGenerated";
 import LoadingRing from "../LoadingRing/LoadingRing";
 
@@ -209,21 +210,23 @@ export default function SearchBar({
     : false;
 
   useEffect(() => {
-    // Add shortcuts command/ctrl + K
-    function handleShortcut(event: KeyboardEvent): void {
-      if ((isMac ? event.metaKey : event.ctrlKey) && event.code === "KeyK") {
-        event.preventDefault();
-        searchBarRef.current?.focus();
-      }
-    }
-    // "keydown" is the only way to capture the "command" key on mac.
-    // Then we use the metaKey boolean prop to see if the "command" key was pressed.
-    const eventType = isMac ? "keydown" : "keypress";
-    document.addEventListener(eventType, handleShortcut);
+    if (searchBarShortcut) {
+      // Add shortcuts command/ctrl + K
+      const handleShortcut = (event: KeyboardEvent): void => {
+        if ((isMac ? event.metaKey : event.ctrlKey) && event.code === "KeyK") {
+          event.preventDefault();
+          searchBarRef.current?.focus();
+        }
+      };
+      // "keydown" is the only way to capture the "command" key on mac.
+      // Then we use the metaKey boolean prop to see if the "command" key was pressed.
+      const eventType = isMac ? "keydown" : "keypress";
+      document.addEventListener(eventType, handleShortcut);
 
-    return () => {
-      document.removeEventListener(eventType, handleShortcut);
-    };
+      return () => {
+        document.removeEventListener(eventType, handleShortcut);
+      };
+    }
   }, [isMac]);
 
   return (
@@ -243,10 +246,12 @@ export default function SearchBar({
         ref={searchBarRef}
       />
       <LoadingRing className={styles.searchBarLoadingRing} />
-      <div className={styles.searchHintContainer}>
-        <kbd className={styles.searchHint}>{isMac ? "⌘" : "ctrl"}</kbd>
-        <kbd className={styles.searchHint}>K</kbd>
-      </div>
+      {searchBarShortcut && (
+        <div className={styles.searchHintContainer}>
+          <kbd className={styles.searchHint}>{isMac ? "⌘" : "ctrl"}</kbd>
+          <kbd className={styles.searchHint}>K</kbd>
+        </div>
+      )}
     </div>
   );
 }
